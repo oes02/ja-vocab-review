@@ -5,13 +5,41 @@
 header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;gap:10px}h1{font-size:24px;margin:0 0 5px}.sub,.small{color:var(--muted);font-size:13px;line-height:1.6}.pill{background:white;border:1px solid var(--line);border-radius:30px;padding:8px 12px;font-size:12px;color:var(--muted)}
 .panel{background:white;border:1px solid var(--line);border-radius:19px;padding:17px;margin-bottom:14px;box-shadow:0 5px 20px #39305b08}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{background:#faf9fe;border-radius:13px;padding:12px;text-align:center}.stat b{display:block;font-size:22px}.stat span{font-size:12px;color:var(--muted)}.progress{height:8px;background:#eeedf4;border-radius:9px;overflow:hidden;margin-top:13px}.bar{height:100%;background:var(--purple);width:0}
 h2{font-size:17px;margin:0 0 12px}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.between{justify-content:space-between}button{border:0;border-radius:12px;padding:12px 14px;font-size:14px;font-weight:700;cursor:pointer}.primary{background:var(--purple);color:white}.secondary{background:var(--pale);color:var(--purple)}.plain{background:#f2f1f7;color:#5e5b70}.know{background:#e6f5ed;color:var(--green)}.unknown{background:#fff0f0;color:var(--red)}
-.card{min-height:260px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,#fff,#faf9ff);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:25px;cursor:pointer;position:relative}.hint{position:absolute;top:15px;font-size:12px;color:var(--muted)}.word{font-size:clamp(34px,8vw,49px);font-weight:800;word-break:break-word}.reading{font-size:16px;color:var(--muted);margin-top:8px}.meaning{font-size:23px;font-weight:700;margin-top:20px}.hidden{display:none!important}.reveal-controls button{min-width:112px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.notice{text-align:center;color:var(--muted);font-size:13px;padding:10px}.filters{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.filters button{padding:8px 11px;font-size:12px}.active{background:var(--purple)!important;color:white!important}
+.card{min-height:260px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,#fff,#faf9ff);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:25px;cursor:pointer;position:relative}.hint{position:absolute;top:15px;font-size:12px;color:var(--muted)}.word{font-size:clamp(34px,8vw,49px);font-weight:800;word-break:break-word}.reading{font-size:16px;color:var(--muted);margin-top:8px}.meaning{font-size:23px;font-weight:700;margin-top:20px}.hidden{display:none!important}.reveal-controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px!important}
+.reveal-controls button,.actions button{width:100%;min-width:0;height:48px;padding:12px 10px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+:root{--ink:#51434a;--muted:#a18b91;--bg:#fff8f5;--purple:#ee9eae;--pale:#fff0f2;--green:#79b99a;--red:#e88b91;--line:#f4dfe1}
+body{background:radial-gradient(circle at 8% 7%,#ffe9ed 0 7%,transparent 7.2%),radial-gradient(circle at 94% 19%,#fff0d9 0 6%,transparent 6.2%),#fff8f5}
+.panel{border-color:#f4dfe1;box-shadow:0 7px 24px #a96c7810}
+.stat{background:#fff5f3}
+.progress{background:#f9e8e8}.bar{background:linear-gradient(90deg,#f3b5c0,#f6c8a7)}
+button{border-radius:14px;transition:transform .15s ease,filter .15s ease}
+button:active{transform:scale(.98)}
+.primary{background:#e99aaa;color:#fff}.secondary{background:#fff0f2;color:#b96f7e}
+.know{background:#dff3e7;color:#498665}.unknown{background:#fff0ef;color:#c56e73}
+.active{background:#e99aaa!important;color:white!important}
+.card{border:2px solid #f5dfe2;background:linear-gradient(145deg,#fffefa,#fff3f3);border-radius:24px;box-shadow:inset 0 0 0 5px #fff9f5}
+.word{color:#59464d}
+h1{color:#8f5864}
+.chiikawa-wrap{display:flex;align-items:center;gap:12px}
+.chiikawa-mascot{position:relative;flex:0 0 62px;width:62px;height:58px}
+.chii-ear{position:absolute;top:0;width:17px;height:27px;background:#fff;border:2px solid #e8d9d7;border-radius:55% 55% 40% 40%;z-index:0}
+.chii-ear.left{left:10px;transform:rotate(-13deg)}.chii-ear.right{right:10px;transform:rotate(13deg)}
+.chii-face{position:absolute;left:4px;bottom:0;width:54px;height:46px;background:#fff;border:2px solid #e8d9d7;border-radius:48% 48% 44% 44%;z-index:1}
+.chii-eye{position:absolute;top:19px;width:4px;height:6px;background:#51434a;border-radius:50%}
+.chii-eye.left{left:15px}.chii-eye.right{right:15px}
+.chii-cheek{position:absolute;top:25px;width:9px;height:5px;background:#f6b7bd;border-radius:50%}
+.chii-cheek.left{left:5px}.chii-cheek.right{right:5px}
+.chii-mouth{position:absolute;left:24px;top:27px;width:6px;height:5px;border-bottom:1.5px solid #51434a;border-radius:50%}
+.chiikawa-label{display:inline-block;margin-top:7px;padding:4px 9px;border-radius:20px;background:#fff0f2;color:#b96f7e;font-size:11px;font-weight:700}
+@media(max-width:480px){.chiikawa-mascot{transform:scale(.92);transform-origin:left center}.reveal-controls button,.actions button{height:46px}}
+.notice{text-align:center;color:var(--muted);font-size:13px;padding:10px}.filters{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.filters button{padding:8px 11px;font-size:12px}.active{background:var(--purple)!important;color:white!important}
 input,textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:11px;font:inherit}textarea{min-height:100px;resize:vertical}.list{display:grid;gap:7px;max-height:340px;overflow:auto}.item{display:flex;justify-content:space-between;gap:8px;padding:10px;background:#faf9fe;border-radius:10px;font-size:13px}.item small{color:var(--muted)}.tag{font-size:11px;color:var(--green)}@media(max-width:480px){.wrap{padding:18px 12px 35px}.panel{padding:14px}.card{min-height:230px}}
 </style></head><body><div class="wrap">
-<header><div><h1>초천재 재서의 회독장</h1><div class="sub">사진 속 기출 어휘 284개 · 연도별 / 신규 60개 바로 학습 가능</div></div><div class="pill" id="count">0개</div></header>
+<header><div class="chiikawa-wrap"><div class="chiikawa-mascot" aria-label="치이카와"><span class="chii-ear left"></span><span class="chii-ear right"></span><span class="chii-face"><i class="chii-eye left"></i><i class="chii-eye right"></i><i class="chii-cheek left"></i><i class="chii-cheek right"></i><i class="chii-mouth"></i></span></div><div><h1>초천재 재서의 회독장</h1><div class="sub">치이카와와 함께하는 포근한 한자 어휘 회독</div><span class="chiikawa-label">ちいかわ · 오늘도 한 걸음!</span></div></div><div class="pill" id="count">0개</div></header>
 <section class="panel"><div class="stats"><div class="stat"><b id="total">0</b><span>전체 단어</span></div><div class="stat"><b id="remain">0</b><span>이번 회독 남음</span></div><div class="stat"><b id="round">1</b><span>회독 횟수</span></div></div><div class="progress"><div class="bar" id="bar"></div></div></section>
 <section class="panel"><div class="row between"><h2>플래시카드</h2><div class="row"><button class="plain" id="all">전체</button><button class="plain" id="wrong">못 외운 단어</button></div></div>
-<div class="filters" id="yearFilters"></div><div class="small">‘추가 60개’를 누르면 방금 보내주신 사진의 단어만 바로 학습할 수 있어요.</div>
+<div class="filters" id="yearFilters"></div><div class="small">치이카와와 함께 차근차근! 한자를 먼저 보고 후리가나와 뜻을 확인해 보세요.</div>
 <div class="card" id="card"><div class="hint" id="hint">카드를 눌러 뜻 확인</div><div class="word" id="front">준비 중</div><div class="reading hidden" id="reading"></div><div class="small" id="cardYear" style="margin-top:8px"></div><div class="meaning hidden" id="back"></div></div>
 <div class="row reveal-controls" style="justify-content:center;margin-top:10px"><button class="secondary" id="showReading" type="button">후리가나</button><button class="secondary" id="showMeaning" type="button">한글 뜻</button></div>
 <div class="actions"><button class="unknown" id="no" disabled>아직 모르겠어요</button><button class="know" id="yes" disabled>외웠어요 ✓</button></div><div class="notice" id="status">카드를 눌러 뜻을 확인하세요.</div>
