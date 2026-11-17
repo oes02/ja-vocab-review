@@ -35,6 +35,23 @@ h1{color:#8f5864}
 @media(max-width:480px){.chiikawa-mascot{transform:scale(.92);transform-origin:left center}.reveal-controls button,.actions button{height:46px}}
 .notice{text-align:center;color:var(--muted);font-size:13px;padding:10px}.filters{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.filters button{padding:8px 11px;font-size:12px}.active{background:var(--purple)!important;color:white!important}
 input,textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:11px;font:inherit}textarea{min-height:100px;resize:vertical}.list{display:grid;gap:7px;max-height:340px;overflow:auto}.item{display:flex;justify-content:space-between;gap:8px;padding:10px;background:#faf9fe;border-radius:10px;font-size:13px}.item small{color:var(--muted)}.tag{font-size:11px;color:var(--green)}@media(max-width:480px){.wrap{padding:18px 12px 35px}.panel{padding:14px}.card{min-height:230px}}
+
+/* Pink-forward Chiikawa palette */
+:root{--ink:#68434e;--muted:#bd8996;--bg:#fff0f4;--purple:#ee8fa8;--pale:#ffe0e9;--green:#79b99a;--red:#e77f91;--line:#f6cbd6}
+body{background:radial-gradient(ellipse at 12% 5%,#ffdce7 0,transparent 32%),radial-gradient(ellipse at 92% 22%,#ffe4ec 0,transparent 30%),linear-gradient(180deg,#fff0f4 0%,#fff8fa 55%,#ffedf2 100%)}
+.panel{background:#fffafd;border:1px solid #f6cbd6;box-shadow:0 8px 26px #d77f981c}
+.stat{background:linear-gradient(145deg,#fff0f4,#fff8fa);border:1px solid #fbe0e7}
+h1{color:#d66f8b}
+.pill{background:#fff4f7;border-color:#f5cbd6;color:#b87889}
+.card{border:2px solid #f3b9c9;background:linear-gradient(145deg,#fffafd 0%,#ffeaf0 100%);box-shadow:inset 0 0 0 5px #fff6f8,0 5px 18px #d77f9815}
+.word{color:#754956}
+.secondary{background:#ffe0e9;color:#c45f7c}
+.primary{background:linear-gradient(135deg,#f39bb2,#e981a0);color:#fff;box-shadow:0 4px 10px #e981a033}
+.active{background:#e981a0!important;color:#fff!important}
+.chiikawa-label{background:#ffe0e9;color:#bd5f7a}
+.progress{background:#fbe0e7}.bar{background:linear-gradient(90deg,#f18eaa,#f6b6c8)}
+.item{background:#fff4f7;border:1px solid #f9e2e9}
+input,textarea{background:#fffafd;border-color:#f3cbd6}
 </style></head><body><div class="wrap">
 <header><div class="chiikawa-wrap"><div class="chiikawa-mascot" aria-label="치이카와"><span class="chii-ear left"></span><span class="chii-ear right"></span><span class="chii-face"><i class="chii-eye left"></i><i class="chii-eye right"></i><i class="chii-cheek left"></i><i class="chii-cheek right"></i><i class="chii-mouth"></i></span></div><div><h1>초천재 재서의 회독장</h1><div class="sub">치이카와와 함께하는 포근한 한자 어휘 회독</div><span class="chiikawa-label">ちいかわ · 오늘도 한 걸음!</span></div></div><div class="pill" id="count">0개</div></header>
 <section class="panel"><div class="stats"><div class="stat"><b id="total">0</b><span>전체 단어</span></div><div class="stat"><b id="remain">0</b><span>이번 회독 남음</span></div><div class="stat"><b id="round">1</b><span>회독 횟수</span></div></div><div class="progress"><div class="bar" id="bar"></div></div></section>
