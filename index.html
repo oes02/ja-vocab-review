@@ -82,7 +82,25 @@ body:after{width:min(36vw,290px);height:min(36vw,290px);left:-75px;bottom:24px;b
 .countdown-clock span{font-size:11px;color:#bd8996}
 .countdown-clock i{font-style:normal;color:#e5a2b5;font-size:23px;margin-top:-13px}
 .countdown-caption{font-size:12px;color:#bd8996}
-@media(max-width:420px){.exam-countdown{padding:14px 10px}.countdown-heading{font-size:13px}.countdown-date{font-size:10px}.countdown-clock{gap:5px}.countdown-clock div{min-width:43px}} 
+@media(max-width:420px){.exam-countdown{padding:14px 10px}.countdown-heading{font-size:13px}.countdown-date{font-size:10px}.countdown-clock{gap:5px}.countdown-clock div{min-width:43px}}
+
+/* Keep the exam countdown visible beside the study cards */
+@media(min-width:820px){
+  .wrap{max-width:1120px;display:grid;grid-template-columns:minmax(220px,260px) minmax(0,1fr);column-gap:22px;align-items:start}
+  header{grid-column:1/-1}
+  .exam-countdown{grid-column:1;grid-row:2;position:sticky;top:18px;align-self:start;margin-bottom:14px}
+  .exam-countdown .countdown-heading{display:block}
+  .exam-countdown .countdown-date{display:block;margin-top:5px}
+  .exam-countdown .countdown-clock{flex-wrap:wrap;gap:8px 10px}
+  .exam-countdown .countdown-clock div{min-width:72px}
+  .exam-countdown .countdown-clock i{display:none}
+  .exam-countdown .countdown-clock b{font-size:30px}
+  .wrap>.panel:not(.exam-countdown){grid-column:2}
+}
+@media(max-width:819px){
+  .wrap{display:block}
+  .exam-countdown{position:static}
+} 
 </style></head><body><div class="wrap">
 <header><div class="chiikawa-wrap"><div class="chiikawa-mascot" aria-label="치이카와"><img src="https://gl.chiikawa-pocket.com/en/_astro/cherry_character.Ce5X0AHQ.png" alt="치이카와 공식 캐릭터 이미지"></div><div><h1>우주초천재 재서의 회독장</h1><div class="sub">치이카와와 함께하는 포근한 한자 어휘 회독</div><span class="chiikawa-label">ちいかわ · 오늘도 한 걸음!</span></div></div><div class="pill" id="count">0개</div></header>
 <section class="panel exam-countdown">
