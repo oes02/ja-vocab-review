@@ -73,8 +73,31 @@ body:after{width:min(36vw,290px);height:min(36vw,290px);left:-75px;bottom:24px;b
 .card{width:100%;margin-left:0;margin-right:0;overflow:hidden;padding-left:25px;padding-right:25px}
 .card:before,.card:after{content:none}
 @media(max-width:600px){.card{padding-left:18px;padding-right:18px}}
+.exam-countdown{background:linear-gradient(135deg,#fff4f7,#fffafd 60%,#ffeaf0);border:1px solid #f3c2d0;text-align:center;padding:16px 18px}
+.countdown-heading{display:flex;justify-content:space-between;align-items:center;gap:8px;color:#bd6681;font-weight:800;font-size:14px}
+.countdown-date{font-size:11px;font-weight:600;color:#c18b9a}
+.countdown-clock{display:flex;justify-content:center;align-items:center;gap:clamp(7px,2vw,17px);margin:14px 0 9px}
+.countdown-clock div{min-width:48px;display:flex;flex-direction:column;gap:2px}
+.countdown-clock b{font-size:clamp(25px,6vw,36px);line-height:1.1;color:#a94f70;font-variant-numeric:tabular-nums}
+.countdown-clock span{font-size:11px;color:#bd8996}
+.countdown-clock i{font-style:normal;color:#e5a2b5;font-size:23px;margin-top:-13px}
+.countdown-caption{font-size:12px;color:#bd8996}
+@media(max-width:420px){.exam-countdown{padding:14px 10px}.countdown-heading{font-size:13px}.countdown-date{font-size:10px}.countdown-clock{gap:5px}.countdown-clock div{min-width:43px}} 
 </style></head><body><div class="wrap">
 <header><div class="chiikawa-wrap"><div class="chiikawa-mascot" aria-label="치이카와"><img src="https://gl.chiikawa-pocket.com/en/_astro/cherry_character.Ce5X0AHQ.png" alt="치이카와 공식 캐릭터 이미지"></div><div><h1>우주초천재 재서의 회독장</h1><div class="sub">치이카와와 함께하는 포근한 한자 어휘 회독</div><span class="chiikawa-label">ちいかわ · 오늘도 한 걸음!</span></div></div><div class="pill" id="count">0개</div></header>
+<section class="panel exam-countdown">
+  <div class="countdown-heading"><span>🎀 JLPT 시험 D-DAY</span><span class="countdown-date">2026.12.06 · 00:00 기준</span></div>
+  <div class="countdown-clock" aria-live="off">
+    <div><b id="ddayDays">--</b><span>일</span></div>
+    <i>:</i>
+    <div><b id="ddayHours">--</b><span>시간</span></div>
+    <i>:</i>
+    <div><b id="ddayMinutes">--</b><span>분</span></div>
+    <i>:</i>
+    <div><b id="ddaySeconds">--</b><span>초</span></div>
+  </div>
+  <div class="countdown-caption" id="ddayCaption">시험까지 차근차근, 오늘도 한 단어씩! 🩷</div>
+</section>
 <section class="panel"><div class="stats"><div class="stat"><b id="total">0</b><span>전체 단어</span></div><div class="stat"><b id="remain">0</b><span>이번 회독 남음</span></div><div class="stat"><b id="round">1</b><span>회독 횟수</span></div></div><div class="progress"><div class="bar" id="bar"></div></div></section>
 <section class="panel"><div class="row between"><h2>플래시카드</h2><div class="row"><button class="plain" id="all">전체</button><button class="plain" id="wrong">못 외운 단어</button></div></div>
 <div class="filters" id="yearFilters"></div><div class="small">치이카와와 함께 차근차근! 한자를 먼저 보고 후리가나와 뜻을 확인해 보세요.</div>
@@ -94,6 +117,25 @@ let words=initial.map((x,i)=>({...x,added:i>=224,...(saved&&saved[i]&&saved[i].j
 
 let queue=[],pos=0,round=1,mode='all',filter='전체',done=0;
 const $=x=>document.getElementById(x);
+const examTime=new Date('2026-12-06T00:00:00+09:00').getTime();
+function updateExamCountdown(){
+  const left=examTime-Date.now();
+  if(left<=0){
+    $('ddayDays').textContent='0';$('ddayHours').textContent='00';$('ddayMinutes').textContent='00';$('ddaySeconds').textContent='00';
+    $('ddayCaption').textContent='시험 당일입니다! 재서, 지금까지 준비한 만큼 잘하고 와요! 🩷';
+    return;
+  }
+  const days=Math.floor(left/86400000);
+  const hours=Math.floor(left%86400000/3600000);
+  const minutes=Math.floor(left%3600000/60000);
+  const seconds=Math.floor(left%60000/1000);
+  $('ddayDays').textContent=days;
+  $('ddayHours').textContent=String(hours).padStart(2,'0');
+  $('ddayMinutes').textContent=String(minutes).padStart(2,'0');
+  $('ddaySeconds').textContent=String(seconds).padStart(2,'0');
+}
+updateExamCountdown();
+setInterval(updateExamCountdown,1000);
 function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(words));render()}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function shuffle(a){for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
