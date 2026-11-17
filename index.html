@@ -133,7 +133,7 @@ const years=['2025','2024','2023','2022','2021','2020이전'];
 const STORAGE_KEY='jaVocabPhotoDeck_303_v4';
 let savedData=null;try{savedData=JSON.parse(localStorage.getItem(STORAGE_KEY)||'null')}catch(e){}
 const savedWords=Array.isArray(savedData)?savedData:(savedData&&Array.isArray(savedData.words)?savedData.words:[]);
-const restoredSession=savedData&&!Array.isArray(savedData)?savedData.session:null;
+let restoredSession=null;try{restoredSession=JSON.parse(localStorage.getItem('jaVocabPhotoDeck_session_v1')||'null')}catch(e){}if(!restoredSession&&savedData&&!Array.isArray(savedData))restoredSession=savedData.session||null;
 let words=initial.map((x,i)=>({...x,added:i>=224,...(savedWords[i]&&savedWords[i].jp===x.jp&&savedWords[i].reading===x.reading&&savedWords[i].ko===x.ko?{known:savedWords[i].known,seen:savedWords[i].seen,correct:savedWords[i].correct}:{})}));
 if(savedWords.length>initial.length){savedWords.slice(initial.length).forEach(w=>{if(w&&w.jp)words.push({...w})})}
 
@@ -158,7 +158,7 @@ function updateExamCountdown(){
 }
 updateExamCountdown();
 setInterval(updateExamCountdown,1000);
-function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify({words,session:{queue,pos,round,mode,filter,done}}));render()}
+function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(words));localStorage.setItem('jaVocabPhotoDeck_session_v1',JSON.stringify({queue,pos,round,mode,filter,done,updatedAt:Date.now()}))}catch(e){console.warn('진행 상황 저장 실패',e)}render()}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function shuffle(a){for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function filteredIndices(){let ids=words.map((w,i)=>i);if(filter==='직전정리')ids=ids.filter(i=>words[i].added);else if(filter==='2020이전')ids=ids.filter(i=>{const y=Number(words[i].year);return (Number.isFinite(y)&&y<=2020)||words[i].year==='2009~2000'||String(words[i].year||'').startsWith('기타')});else if(filter!=='전체')ids=ids.filter(i=>words[i].year===filter);if(mode==='wrong')ids=ids.filter(i=>!words[i].known);return ids}
@@ -186,4 +186,6 @@ if(restoredSession&&Array.isArray(restoredSession.queue)){
   done=Math.max(0,Number(restoredSession.done)||0);
   show();render();
 }else{start()}
+window.addEventListener('pagehide',()=>{try{localStorage.setItem(STORAGE_KEY,JSON.stringify(words));localStorage.setItem('jaVocabPhotoDeck_session_v1',JSON.stringify({queue,pos,round,mode,filter,done,updatedAt:Date.now()}))}catch(e){}});
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(words));localStorage.setItem('jaVocabPhotoDeck_session_v1',JSON.stringify({queue,pos,round,mode,filter,done,updatedAt:Date.now()}))}catch(e){}}});
 </script></body></html>
